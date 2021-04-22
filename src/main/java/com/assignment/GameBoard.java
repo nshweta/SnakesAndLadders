@@ -2,8 +2,8 @@ package com.assignment;
 
 public class GameBoard {
     private int size;
-    public GameBoard(int maxNumber) {
-        this.size = maxNumber;
+    public GameBoard(int size) {
+        this.size = size;
     }
 
     public int getSize() {
