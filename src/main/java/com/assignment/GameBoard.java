@@ -13,8 +13,6 @@ public class GameBoard {
         this.snakes = new ArrayList<Snake>();
     }
 
-
-
     public int getSize() {
         return size;
     }

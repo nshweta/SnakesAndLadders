@@ -16,7 +16,7 @@ public class Game {
 
 
     public void play(int turns) {
-       for(int turn=0; turn < turns ; turn++){
+       for(int turn=1; turn <= turns ; turn++){
            player.plays(dice);
            player.setPosition(gameBoard.getNewPosition(player.getPosition()));
            System.out.println(String.format(PLAYER_POSITION_INFO, player.getName(), player.getPosition(), turn));

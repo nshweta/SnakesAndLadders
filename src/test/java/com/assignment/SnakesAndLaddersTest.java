@@ -1,5 +1,6 @@
 package com.assignment;
 
+import com.assignment.dice.CrookedDice;
 import com.assignment.dice.Dice;
 import com.assignment.dice.NormalDice;
 import org.junit.Test;
@@ -16,7 +17,6 @@ public class SnakesAndLaddersTest {
     public void gameBoardOfSize100(){
         createSimpleBoard(100).verifyBoardSize(100);
     }
-
 
     @Test
     public void playerWithInitialPositionZero(){
@@ -45,8 +45,19 @@ public class SnakesAndLaddersTest {
 
 
     @Test
-    public void startGameWithSinglePlayer(){
-        createBoard().initializeGame().playGame(10).verifyPlayerPositionNotZero();
+    public void startGameWithSinglePlayerNormalDice(){
+        createBoard().initializeGameWithNormalDice().playGame(10).verifyPlayerPositionNotZero();
+    }
+
+    @Test
+    public void startGameWithSinglePlayerCrookedDice(){
+        createBoard().initializeGameWithCrookedDice().playGame(10).verifyPlayerPositionNotZero();
+    }
+
+    @Test
+    public void crookedDice(){
+        CrookedDice dice = new CrookedDice();
+        System.out.println(dice.roll());
     }
 
     private void verifyBoardSize(int expectedBoardSize) {
@@ -81,10 +92,20 @@ public class SnakesAndLaddersTest {
         return this;
     }
 
-    private SnakesAndLaddersTest initializeGame() {
+    private SnakesAndLaddersTest initializeGameWithNormalDice() {
         createBoard().createPlayer("Shweta").createNormalDice();
         game = new Game(gameBoard, player, dice);
         return this;
+    }
+
+    private SnakesAndLaddersTest initializeGameWithCrookedDice() {
+        createBoard().createPlayer("Shweta").createCrookedDice();
+        game = new Game(gameBoard, player, dice);
+        return this;
+    }
+
+    private void createCrookedDice() {
+        dice = new CrookedDice();
     }
 
     private void createNormalDice() {
