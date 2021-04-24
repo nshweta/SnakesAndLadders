@@ -23,6 +23,11 @@ public class SnakesAndLaddersTest {
         createPlayer("Shweta").verifyPosition(0);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void gameBoardWithInvalidSnakePosition(){
+        createBoardWithASnake(100, 10, 20);
+    }
+
     @Test
     public void newPositionChangesWhenCaughtByASnake(){
         int currentPositionOnBoard = 14;
@@ -46,18 +51,12 @@ public class SnakesAndLaddersTest {
 
     @Test
     public void startGameWithSinglePlayerNormalDice(){
-        createBoard().initializeGameWithNormalDice().playGame(10).verifyPlayerPositionNotZero();
+        createBoardWithASnake(100, 14, 7).initializeGameWithNormalDice().playGame(10).verifyPlayerPositionNotZero();
     }
 
     @Test
     public void startGameWithSinglePlayerCrookedDice(){
-        createBoard().initializeGameWithCrookedDice().playGame(10).verifyPlayerPositionNotZero();
-    }
-
-    @Test
-    public void crookedDice(){
-        CrookedDice dice = new CrookedDice();
-        System.out.println(dice.roll());
+        createBoardWithASnake(100, 14, 7).initializeGameWithCrookedDice().playGame(10).verifyPlayerPositionNotZero();
     }
 
     private void verifyBoardSize(int expectedBoardSize) {
@@ -79,10 +78,6 @@ public class SnakesAndLaddersTest {
         return this;
     }
 
-
-
-
-
     private void verifyPlayerPositionNotZero() {
         assertNotEquals(0, player.getPosition());
     }
@@ -93,13 +88,13 @@ public class SnakesAndLaddersTest {
     }
 
     private SnakesAndLaddersTest initializeGameWithNormalDice() {
-        createBoard().createPlayer("Shweta").createNormalDice();
+        createBoardWithASnake(100, 14, 7).createPlayer("Shweta").createNormalDice();
         game = new Game(gameBoard, player, dice);
         return this;
     }
 
     private SnakesAndLaddersTest initializeGameWithCrookedDice() {
-        createBoard().createPlayer("Shweta").createCrookedDice();
+        createBoardWithASnake(100, 14, 7).createPlayer("Shweta").createCrookedDice();
         game = new Game(gameBoard, player, dice);
         return this;
     }
@@ -112,24 +107,6 @@ public class SnakesAndLaddersTest {
         dice = new NormalDice();
     }
 
-
-    private SnakesAndLaddersTest createBoard() {
-        gameBoard = new GameBoard(100);
-        gameBoard.addSnake(14, 7);
-        return this;
-    }
-
-    private SnakesAndLaddersTest startGame() {
-//        GameBoard board =
-//        game = new Game()
-        return this;
-    }
-
-
-    private SnakesAndLaddersTest plays() {
-        player.plays(dice);
-        return this;
-    }
 
 
     private SnakesAndLaddersTest verifyPosition(int expectedPosition) {

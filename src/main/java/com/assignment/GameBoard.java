@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class GameBoard {
+    public static final String INVALID_SNAKE_POSITIONS = "Snake's end position cannot be greater start position";
     private int size;
     private List<Snake> snakes;
 
@@ -30,6 +31,9 @@ public class GameBoard {
         int startPosition;
         int endPosition;
         public Snake(int startPosition,  int endPosition) {
+            if(endPosition > startPosition){
+                throw new IllegalArgumentException(INVALID_SNAKE_POSITIONS);
+            }
             this.startPosition = startPosition;
             this.endPosition = endPosition;
         }
