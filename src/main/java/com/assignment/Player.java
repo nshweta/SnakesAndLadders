@@ -1,5 +1,7 @@
 package com.assignment;
 
+import com.assignment.dice.Dice;
+
 public class Player {
     private String name;
     private int position = 0;

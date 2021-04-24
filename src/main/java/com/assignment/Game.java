@@ -1,5 +1,7 @@
 package com.assignment;
 
+import com.assignment.dice.Dice;
+
 public class Game {
     public static final String PLAYER_POSITION_INFO = "Player %s is at position %d in turn number %d";
     public static final String PLAYER_WINS = "Player %s wins";

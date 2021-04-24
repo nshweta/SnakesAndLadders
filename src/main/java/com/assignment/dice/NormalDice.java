@@ -1,8 +1,9 @@
-package com.assignment;
+package com.assignment.dice;
 
 import java.util.Random;
 
-public class Dice {
+public class NormalDice implements Dice {
+    @Override
     public int roll() {
         return new Random().nextInt(6) + 1;
     }

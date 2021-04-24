@@ -1,5 +1,7 @@
 package com.assignment;
 
+import com.assignment.dice.Dice;
+import com.assignment.dice.NormalDice;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -12,8 +14,13 @@ public class SnakesAndLaddersTest {
 
     @Test
     public void gameBoardOfSize100(){
-        GameBoard gameBoard = new GameBoard(100);
-        assertEquals(100, gameBoard.getSize());
+        createSimpleBoard(100).verifyBoardSize(100);
+    }
+
+
+    @Test
+    public void playerWithInitialPositionZero(){
+        createPlayer("Shweta").verifyPosition(0);
     }
 
     @Test
@@ -36,6 +43,21 @@ public class SnakesAndLaddersTest {
         assertEquals(currentPositionOnBoard, newPositionOnBoard);
     }
 
+
+    @Test
+    public void startGameWithSinglePlayer(){
+        createBoard().initializeGame().playGame(10).verifyPlayerPositionNotZero();
+    }
+
+    private void verifyBoardSize(int expectedBoardSize) {
+        assertEquals(expectedBoardSize, gameBoard.getSize());
+    }
+
+    private SnakesAndLaddersTest createSimpleBoard(int size) {
+        gameBoard = new GameBoard(100);
+        return this;
+    }
+
     private int getNewPositionOnBoard(int currentPositionOnBoard) {
         return gameBoard.getNewPosition(currentPositionOnBoard);
     }
@@ -46,16 +68,9 @@ public class SnakesAndLaddersTest {
         return this;
     }
 
-    @Test
-    public void playerWithInitialPositionZero(){
-        createPlayer("Shweta").verifyPosition(0);
-    }
 
 
-    @Test
-    public void startGameWithSinglePlayer(){
-        createBoard().initializeGame().playGame(10).verifyPlayerPositionNotZero();
-    }
+
 
     private void verifyPlayerPositionNotZero() {
         assertNotEquals(0, player.getPosition());
@@ -73,7 +88,7 @@ public class SnakesAndLaddersTest {
     }
 
     private void createNormalDice() {
-        dice = new Dice();
+        dice = new NormalDice();
     }
 
 
