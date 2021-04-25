@@ -18,10 +18,10 @@ public class Game {
 
     public void play(int turns) {
        for(int turn=1; turn <= turns ; turn++){
-           player.plays(dice);
+           player.plays(dice, gameBoard.getSize());
            player.setPosition(gameBoard.getNewPosition(player.getPosition()));
            System.out.println(String.format(PLAYER_POSITION_CHANGED, player.getName(), player.getPosition(), turn));
-           if(player.isWinner(gameBoard.getSize())){
+           if(player.isWinner()){
                System.out.println(String.format(PLAYER_WINS, player.getName()));
                break;
            }

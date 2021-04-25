@@ -5,7 +5,8 @@ import com.assignment.dice.Dice;
 import com.assignment.dice.NormalDice;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class SnakesAndLaddersTest {
     GameBoard gameBoard;
@@ -24,7 +25,7 @@ public class SnakesAndLaddersTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void gameBoardWithInvalidSnakePosition(){
+    public void gameBoardWithInvalidSnakePositions(){
         createBoardWithASnake(100, 10, 20);
     }
 
@@ -48,6 +49,25 @@ public class SnakesAndLaddersTest {
         assertEquals(currentPositionOnBoard, newPositionOnBoard);
     }
 
+    @Test
+    public void verifyPlayerPositionNotBeyondBoardSize(){
+        createPlayerWithCurrentPosition(99).createSimpleBoard(100).createCrookedDice().initializeGame().playGame(1).verifyPlayerPosition(99);
+    }
+
+    private SnakesAndLaddersTest initializeGame() {
+        game = new Game(gameBoard, player, dice);
+        return this;
+    }
+
+    private void verifyPlayerPosition(int expectedPosition) {
+        assertEquals(expectedPosition, player.getPosition());
+    }
+
+    private SnakesAndLaddersTest createPlayerWithCurrentPosition(int position) {
+        player = new Player("Siya");
+        player.setPosition(position);
+        return this;
+    }
 
     @Test
     public void startGameWithSinglePlayerNormalDice(){
@@ -64,7 +84,7 @@ public class SnakesAndLaddersTest {
     }
 
     private SnakesAndLaddersTest createSimpleBoard(int size) {
-        gameBoard = new GameBoard(100);
+        gameBoard = new GameBoard(size);
         return this;
     }
 
@@ -99,8 +119,9 @@ public class SnakesAndLaddersTest {
         return this;
     }
 
-    private void createCrookedDice() {
+    private SnakesAndLaddersTest createCrookedDice() {
         dice = new CrookedDice();
+        return this;
     }
 
     private void createNormalDice() {

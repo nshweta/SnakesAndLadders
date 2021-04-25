@@ -5,18 +5,21 @@ import com.assignment.dice.Dice;
 public class Player {
     private String name;
     private int position = 0;
+    private boolean isWinner;
 
     public Player(String playerName) {
         this.name = playerName;
     }
 
 
-    public boolean isWinner(int size) {
-        return position == size;
+    public boolean isWinner() {
+        return isWinner;
     }
 
-    public void plays(Dice dice) {
-        position += dice.roll();
+    public void plays(Dice dice, int size) {
+        int newPosition = position + dice.roll();
+        position = newPosition > size ? position : newPosition;
+        isWinner = position == size;
     }
 
     public int getPosition() {
