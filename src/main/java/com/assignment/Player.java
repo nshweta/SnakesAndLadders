@@ -4,7 +4,7 @@ import com.assignment.dice.Dice;
 
 public class Player {
     private String name;
-    private int position = 0;
+    private int position;
     private boolean isWinner;
 
     public Player(String playerName) {
