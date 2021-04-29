@@ -32,7 +32,8 @@ public class GameBoard {
         return currentPosition;
     }
 
-    public static class Snake {
+
+    private class Snake {
         int startPosition;
         int endPosition;
         public Snake(int startPosition,  int endPosition) {

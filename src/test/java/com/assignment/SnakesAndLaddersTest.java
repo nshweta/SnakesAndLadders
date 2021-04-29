@@ -54,6 +54,7 @@ public class SnakesAndLaddersTest {
         createPlayerWithCurrentPosition(99).createSimpleBoard(100).createCrookedDice().initializeGame().playGame(1).verifyPlayerPosition(99);
     }
 
+
     private SnakesAndLaddersTest initializeGame() {
         game = new Game(gameBoard, player, dice);
         return this;
